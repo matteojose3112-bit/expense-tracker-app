@@ -47,16 +47,15 @@
     </form>
 
 <div class="filters">
-  <button onclick="setFilter('all')">All</button>
-  <button onclick="setFilter('income')">Income</button>
-  <button onclick="setFilter('expense')">Expense</button>
+  <button type="button" onclick="setFilter('all')">All</button>
+<button type="button" onclick="setFilter('income')">Income</button>
+<button type="button" onclick="setFilter('expense')">Expense</button>
 </div>
 
-<canvas id="chart"></canvas>
+<canvas id="chart" height="200"></canvas>
 
-<button onclick="clearAll()">Clear All</button>
-
-<button onclick="exportData()">Export</button>
+<button type="button" onclick="clearAll()">Clear All</button>
+<button type="button" onclick="exportData()">Export</button>
 
     <ul id="list"></ul>
   </div>
