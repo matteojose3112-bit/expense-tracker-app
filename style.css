@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px 40px; /* 👈 more top space */
+  margin-top: 20px;
+}
+
+.container {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* summary */
+.summary {
+  display: flex;
+  justify-content: space-between;
+  background: #0f172a;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.summary div {
+  text-align: center;
+  width: 50%;
+}
+
+#income {
+  color: #22c55e;
+}
+
+#expense {
+  color: #ef4444;
+}
+
+/* form */
+form input, form select, form button {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+input, select {
+  background: #334155;
+  color: white;
+}
+
+button {
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+/* list */
+ul {
+  padding: 0;
+  margin-top: 15px;
+}
+
+li {
+  list-style: none;
+  background: #334155;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.income {
+  border-left: 4px solid #22c55e;
+}
+
+.expense {
+  border-left: 4px solid #ef4444;
+}
+
+/* category tags */
+.tag {
+  font-size: 11px;
+  padding: 3px 6px;
+  margin-left: 8px;
+  border-radius: 5px;
+}
+
+.food { background: #f59e0b; }
+.transport { background: #3b82f6; }
+.bills { background: #8b5cf6; }
+
+.rent { background: #ef4444; }
+.entertainment { background: #ec4899; }
+.shopping { background: #f97316; }
+.health { background: #10b981; }
+.education { background: #6366f1; }
+.salary { background: #22c55e; }
+.other { background: #64748b; }
+
+/* filters */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.filters button {
+  flex: 1;
+  margin: 3px;
+  background: #334155;
+}
+
+.filters button:hover {
+  background: #475569;
+}
+
+/* chart */
+canvas {
+  margin-top: 20px;
+}

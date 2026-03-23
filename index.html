@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <h1>💸 Expense Tracker</h1>
+
+  <div class="container">
+    <h2>Balance: $<span id="balance">0</span></h2>
+
+    <div class="summary">
+      <div>
+        <h4>Income</h4>
+        <p id="income">0</p>
+      </div>
+      <div>
+        <h4>Expense</h4>
+        <p id="expense">0</p>
+      </div>
+    </div>
+
+    <form id="form">
+      <input type="text" id="text" placeholder="Description" required>
+      <input type="number" id="amount" placeholder="Amount (+ income, - expense)" required>
+
+      <label for="category">Category</label>
+<select id="category">
+  <option>Food</option>
+  <option>Transport</option>
+  <option>Bills</option>
+  <option>Rent</option>
+  <option>Entertainment</option>
+  <option>Shopping</option>
+  <option>Health</option>
+  <option>Education</option>
+  <option>Salary</option>
+  <option>Other</option>
+</select>
+
+      <button type="submit">Add</button>
+    </form>
+
+<div class="filters">
+  <button onclick="setFilter('all')">All</button>
+  <button onclick="setFilter('income')">Income</button>
+  <button onclick="setFilter('expense')">Expense</button>
+</div>
+
+<canvas id="chart"></canvas>
+
+<button onclick="clearAll()">Clear All</button>
+
+<button onclick="exportData()">Export</button>
+
+    <ul id="list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
