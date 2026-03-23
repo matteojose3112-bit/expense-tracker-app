@@ -5,11 +5,23 @@ const incomeEl = document.getElementById("income");
 const expenseEl = document.getElementById("expense");
 
 let currentFilter = "all";
-
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+let chart;
+
+// ✅ MAIN UI UPDATE
 function updateUI() {
   list.innerHTML = "";
+
+  // empty state
+  if (transactions.length === 0) {
+    list.innerHTML = "<p>No transactions yet</p>";
+    balance.innerText = 0;
+    incomeEl.innerText = 0;
+    expenseEl.innerText = 0;
+    updateChart();
+    return;
+  }
 
   let total = 0;
   let income = 0;
@@ -17,8 +29,10 @@ function updateUI() {
 
   transactions.forEach((t, index) => {
 
-  if (currentFilter === "income" && t.amount < 0) return;
-  if (currentFilter === "expense" && t.amount > 0) return;
+    if (currentFilter === "income" && t.amount < 0) return;
+    if (currentFilter === "expense" && t.amount > 0) return;
+
+    total += t.amount;
 
     if (t.amount > 0) income += t.amount;
     else expense += t.amount;
@@ -27,13 +41,13 @@ function updateUI() {
     li.classList.add(t.amount > 0 ? "income" : "expense");
 
     li.innerHTML = `
-  <div>
-    ${t.text}
-    <span class="tag ${t.category.toLowerCase()}">${t.category}</span>
-  </div>
-  <span>${t.amount > 0 ? "+" : ""}$${Math.abs(t.amount)}</span>
-  <button onclick="deleteTx(${index})">x</button>
-`;
+      <div>
+        ${t.text}
+        <span class="tag ${t.category.toLowerCase()}">${t.category}</span>
+      </div>
+      <span>${t.amount > 0 ? "+" : ""}$${Math.abs(t.amount)}</span>
+      <button onclick="deleteTx(${index})">x</button>
+    `;
 
     list.appendChild(li);
   });
@@ -41,19 +55,24 @@ function updateUI() {
   balance.innerText = total;
   incomeEl.innerText = income;
   expenseEl.innerText = expense;
+
+  updateChart(); // ✅ always update chart
 }
 
+// ✅ DELETE
 function deleteTx(index) {
   transactions.splice(index, 1);
   localStorage.setItem("transactions", JSON.stringify(transactions));
   updateUI();
 }
 
+// ✅ FILTER
 function setFilter(type) {
   currentFilter = type;
   updateUI();
 }
 
+// ✅ ADD TRANSACTION
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -69,12 +88,10 @@ form.addEventListener("submit", (e) => {
   updateUI();
 });
 
-let chart;
-
+// ✅ CHART
 function updateChart() {
   const data = {};
 
-  // group by category
   transactions.forEach(t => {
     if (t.amount < 0) {
       if (!data[t.category]) data[t.category] = 0;
@@ -85,7 +102,6 @@ function updateChart() {
   const labels = Object.keys(data);
   const values = Object.values(data);
 
-  // destroy old chart (important)
   if (chart) chart.destroy();
 
   const ctx = document.getElementById("chart").getContext("2d");
@@ -101,12 +117,14 @@ function updateChart() {
   });
 }
 
+// ✅ CLEAR ALL
 function clearAll() {
   transactions = [];
   localStorage.removeItem("transactions");
   updateUI();
 }
 
+// ✅ EXPORT
 function exportData() {
   const dataStr = JSON.stringify(transactions, null, 2);
   const blob = new Blob([dataStr], { type: "application/json" });
@@ -118,14 +136,5 @@ function exportData() {
   a.click();
 }
 
-if (transactions.length === 0) {
-  list.innerHTML = "<p>No transactions yet</p>";
-  balance.innerText = 0;
-  incomeEl.innerText = 0;
-  expenseEl.innerText = 0;
-  return;
-}
-
+// ✅ INIT
 updateUI();
-
-updateChart();
