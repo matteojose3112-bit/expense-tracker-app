@@ -29,5 +29,10 @@ A modern expense tracker built with HTML, CSS, and JavaScript.
 3. Select category
 4. Track your balance and spending
 
+## 📈 Future Improvements
+- Monthly tracking
+- Category filtering
+- Dark/light mode toggle
+
 ## 💡 Purpose
 Built to practice DOM manipulation, state management, and building real-world web apps without frameworks.
